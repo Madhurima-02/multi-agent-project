@@ -36,7 +36,7 @@ function ResumeAgent() {
     }
     try {
       setLoading(true)
-      const res = await fetch('/api/resume/history', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/history`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ function ResumeAgent() {
 
     try {
       setAnalyzing(true)
-      const res = await fetch('/api/resume/analyze', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/analyze`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

@@ -49,10 +49,12 @@ function CoordinatorAgent() {
       return
     }
     try {
-      setLoading(true)
-      const res = await fetch('/api/coordinator/roadmap', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      })
+  setLoading(true)
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/coordinator/roadmap`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
       if (res.status === 401) {
         localStorage.removeItem('token')
         navigate('/login')
@@ -90,14 +92,14 @@ function CoordinatorAgent() {
       return
     }
     try {
-      const res = await fetch('/api/coordinator/chat', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ message: originalMsg })
-      })
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/coordinator/chat`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ message: originalMsg }),
+  })
       if (res.status === 401) {
         localStorage.removeItem('token')
         navigate('/login')

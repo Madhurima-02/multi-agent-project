@@ -40,7 +40,9 @@ function Dashboard() {
         setError(null)
         
         // 0. Fetch Current User Details
-        const meRes = await fetch('/api/auth/me', { headers })
+        const meRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+  headers,
+})
         if (meRes.status === 401) {
           localStorage.removeItem('token')
           navigate('/login')
@@ -52,8 +54,11 @@ function Dashboard() {
         }
         
         // 1. Fetch Coordinator Roadmap details
-        const roadmapRes = await fetch('/api/coordinator/roadmap', { headers })
-        if (roadmapRes.status === 401) {
+const roadmapRes = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/coordinator/roadmap`,
+  { headers }
+)       
+ if (roadmapRes.status === 401) {
           localStorage.removeItem('token')
           navigate('/login')
           return
@@ -64,7 +69,7 @@ function Dashboard() {
         }
         
         // 2. Fetch Resume History
-        const resumeRes = await fetch('/api/resume/history', { headers })
+        const resumeRes = await fetch (`${import.meta.env.VITE_API_URL}/api/resume/history`, { headers })
         if (resumeRes.ok) {
           const resumeData = await resumeRes.json()
           if (resumeData.length > 0) {
@@ -73,7 +78,7 @@ function Dashboard() {
         }
         
         // 3. Fetch DSA Submissions
-        const dsaRes = await fetch('/api/dsa/submissions', { headers })
+        const dsaRes = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/submissions`, { headers })
         if (dsaRes.ok) {
           const dsaData = await dsaRes.json()
           const solved = dsaData.filter(sub => sub.status === 'Solved').length
@@ -81,7 +86,7 @@ function Dashboard() {
         }
         
         // 4. Fetch Interview Sessions
-        const interviewRes = await fetch('/api/interview/sessions', { headers })
+        const interviewRes = await fetch(`${import.meta.env.VITE_API_URL}/api/interview/sessions`, { headers })
         if (interviewRes.ok) {
           const interviewData = await interviewRes.json()
           const completed = interviewData.filter(s => s.status === 'Completed')

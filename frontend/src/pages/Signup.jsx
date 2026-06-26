@@ -33,7 +33,7 @@ function Signup() {
 
     try {
       // 1. Submit Registration
-      const registerRes = await fetch('/api/auth/signup', {
+      const registerRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ function Signup() {
       }
 
       // 2. Perform Auto-Login
-      const loginRes = await fetch('/api/auth/login', {
+      const loginRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

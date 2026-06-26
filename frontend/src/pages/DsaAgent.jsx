@@ -41,7 +41,7 @@ function DsaAgent() {
     }
     try {
       setLoading(true)
-      const probRes = await fetch('/api/dsa/problems', {
+      const probRes = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/problems`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       if (probRes.status === 401) {
@@ -58,7 +58,7 @@ function DsaAgent() {
         }
       }
 
-      const subRes = await fetch('/api/dsa/submissions', {
+      const subRes = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/submissions`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       if (subRes.status === 401) {
@@ -120,7 +120,7 @@ function DsaAgent() {
       setIsSubmitting(true)
       setConsoleOutput('Submitting SDE evaluation pipeline...\nRunning hidden test suites...')
       
-      const res = await fetch('/api/dsa/submit', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/submit`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

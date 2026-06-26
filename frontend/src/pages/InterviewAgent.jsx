@@ -49,7 +49,7 @@ function InterviewAgent() {
     }
     try {
       setLoading(true)
-      const res = await fetch('/api/interview/sessions', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/interview/sessions`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       if (res.status === 401) {
@@ -89,7 +89,7 @@ function InterviewAgent() {
     }
     try {
       setIsStarting(true)
-      const res = await fetch('/api/interview/session', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/interview/session`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

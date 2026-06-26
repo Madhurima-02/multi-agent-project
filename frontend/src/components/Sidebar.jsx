@@ -26,11 +26,11 @@ function Sidebar() {
         return
       }
       try {
-        const res = await fetch('/api/auth/me', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
         if (res.ok) {
           const data = await res.json()
           setUser(data)
